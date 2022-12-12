@@ -89,14 +89,14 @@ public class MovementController : MonoBehaviour
         {
             DOTween.To(() => speed, x => speed = x, runSpeed, 3);
             DOTween.To(() => chromaticAberration.intensity.value, x => chromaticAberration.intensity.value = x, 1, 3);
-            cam.DOFieldOfView(90, 3);
+            cam.DOFieldOfView(70, 1);
             isRunning = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             DOTween.To(() => speed, x => speed = x, walkSpeed, 3);
             DOTween.To(() => chromaticAberration.intensity.value, x => chromaticAberration.intensity.value = x, 0, 3);
-            cam.DOFieldOfView(60, 3);
+            cam.DOFieldOfView(60, 1);
             isRunning= false;
         }
     }
