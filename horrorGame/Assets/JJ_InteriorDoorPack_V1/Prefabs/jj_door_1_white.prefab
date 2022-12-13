@@ -285,7 +285,6 @@ MonoBehaviour:
   AudioSource: {fileID: 6251937653516414613}
   doorOpenSound: {fileID: 8300000, guid: 07e1d08292eff07489b0353b7580eaf3, type: 3}
   doorCloseSound: {fileID: 8300000, guid: f73b9d8349854bf45b52ca28736530ea, type: 3}
-  canInteract: 0
 --- !u!95 &8258524470157172740
 Animator:
   serializedVersion: 4

@@ -11,20 +11,19 @@ public class Doors : MonoBehaviour
     public AudioClip doorOpenSound;
     public AudioClip doorCloseSound;
 
-    public bool canInteract;
+    private bool inReach;
     private bool opened;
     
     void Start()
     {
-        canInteract = false;
+        inReach = false;
         opened = false;
     }
 
     
     void Update()
-    {
-        UIText();
-        if(canInteract && Input.GetKeyDown(KeyCode.E))
+    {    
+        if(inReach && Input.GetKeyDown(KeyCode.E))
         {
             if(opened == false)
             {
@@ -39,17 +38,25 @@ public class Doors : MonoBehaviour
         }
     }
 
-    private void UIText()
+    private void OnTriggerEnter(Collider other)
     {
-        if (canInteract)
+        if(other.gameObject.tag == "Reach")
         {
+            inReach = true;
             openText.SetActive(true);
         }
-        else
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Reach")
         {
+            inReach = false;
             openText.SetActive(false);
         }
     }
+
+    
 
     private void DoorOpens()
     {
