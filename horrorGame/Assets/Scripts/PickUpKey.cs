@@ -29,7 +29,7 @@ public class PickUpKey : MonoBehaviour
             pickUpText.SetActive(false);
         }
     }
-
+ 
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Reach")
@@ -47,4 +47,8 @@ public class PickUpKey : MonoBehaviour
             pickUpText.SetActive(false);
         }
     }
+ 
+
+    
+
 }

@@ -13,8 +13,17 @@ public class OpenBox : MonoBehaviour
 
     [SerializeField] private bool inReach;
     [SerializeField] private bool isOpen;
+
+    [SerializeField] GameObject drop1;
+    [SerializeField] GameObject drop2;
+    [SerializeField] GameObject drop3;
+    [SerializeField] GameObject drop4;
+    [SerializeField] GameObject drop5;
+    [SerializeField] GameObject drop6;
+    [SerializeField] private int randomNumber;
     void Start()
     {
+        randomNumber = Random.Range(1, 6);
         inReach = false;
         openText.SetActive(false);
         keyMissingText.SetActive(false);
@@ -31,6 +40,40 @@ public class OpenBox : MonoBehaviour
             openText.SetActive(false);
             keyMissingText.SetActive(false);
             isOpen = true;
+
+            switch (randomNumber)
+            {
+                case 1:
+                    {
+                        drop1.SetActive(true);
+                        break;
+                    }
+                case 2:
+                    {
+                        drop2.SetActive(true);
+                        break;
+                    }
+                case 3:
+                    {
+                        drop3.SetActive(true);
+                        break;
+                    }
+                case 4:
+                    {
+                        drop4.SetActive(true);
+                        break;
+                    }
+                case 5:
+                    {
+                        drop5.SetActive(true);
+                        break;
+                    }
+                case 6:
+                    {
+                        drop6.SetActive(true);
+                        break;
+                    }
+            }
         }
         else if(boxKeyNeeded.activeInHierarchy == false && inReach && Input.GetKeyDown(KeyCode.E))
         {
