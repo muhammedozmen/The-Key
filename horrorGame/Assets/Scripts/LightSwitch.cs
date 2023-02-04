@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
+    [SerializeField] private DevilAI devilAI;
+
     [SerializeField] private GameObject lightsText;
+    [SerializeField] private GameObject notAllowedText;
 
     [SerializeField] private GameObject lightObject;
     [SerializeField] private GameObject halo;
     [SerializeField] private GameObject fire;
     [SerializeField] private GameObject smoke;
+
+    [SerializeField] LightFlicker lightFlicker;
 
     //[SerializeField] private AudioSource lightOn;
     //[SerializeField] private AudioSource lightOff;
@@ -19,32 +24,56 @@ public class LightSwitch : MonoBehaviour
     
     void Start()
     {
+        
         inReach = false;
         isLightOn = false;
     }
 
     
-    void Update()
-    {
-        if(isLightOn == true && inReach == true && Input.GetKeyDown(KeyCode.E))
+    void LateUpdate()
+    {  
+        if(devilAI.rageLevel > 5)
         {
-            lightObject.SetActive(false);
-            halo.SetActive(false);
-            fire.SetActive(false);
-            smoke.SetActive(false);
-            //lightOn.Play();
-            isLightOn=false;
+            if(isLightOn == true)
+            {
+                lightObject.SetActive(false);
+                halo.SetActive(false);
+                fire.SetActive(false);
+                smoke.SetActive(false);
+                isLightOn = false;
+            }
         }
-        else if(isLightOn == false && inReach == true && Input.GetKeyDown(KeyCode.E))
+        else
         {
-            lightObject.SetActive(true);
-            halo.SetActive(true);
-            fire.SetActive(true);
-            smoke.SetActive(true);
-            //lightOff.Play();    
-            isLightOn = true;
+            if (isLightOn == true && inReach == true && Input.GetKeyDown(KeyCode.E) && lightFlicker.isDevilTriggered == false)
+            {
+                lightObject.SetActive(false);
+                halo.SetActive(false);
+                fire.SetActive(false);
+                smoke.SetActive(false);
+                //lightOn.Play();
+                isLightOn = false;
+            }
+            else if (isLightOn == false && inReach == true && Input.GetKeyDown(KeyCode.E) && lightFlicker.isDevilTriggered == false)
+            {
+                lightObject.SetActive(true);
+                halo.SetActive(true);
+                fire.SetActive(true);
+                smoke.SetActive(true);
+                //lightOff.Play();    
+                isLightOn = true;
+            }
+            else if (inReach == true && Input.GetKeyDown(KeyCode.E) && lightFlicker.isDevilTriggered == true)
+            {
+                lightsText.SetActive(false);
+                notAllowedText.SetActive(true);
+            }
         }
+
+        
+        
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -61,6 +90,7 @@ public class LightSwitch : MonoBehaviour
         {
             inReach = false;
             lightsText.SetActive(false);
+            notAllowedText.SetActive(false);
         }
     }
 

@@ -34,16 +34,17 @@ public class DevilAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        rageLevel = 1;
+        //rageLevel = 1;
     }
 
     
     void Update()
     {
         
-
+        //devil ile hedef aras?ndaki mesafe
         distance = Vector3.Distance(transform.position, target.transform.position);
 
+        //devil, rage seviyesi 5 veya 5'ten kücükse yürüyerek ilerlesin
         if(distance < triggerDistance && rageLevel <= 5)
         {
             agent.enabled = true;
@@ -61,6 +62,8 @@ public class DevilAI : MonoBehaviour
                 DoFootSteps();
             }
         }
+
+        //rage seviyesi 5'ten büyükse kosarak ilerlesin
         else if(distance < triggerDistance && rageLevel < 11 && rageLevel > 5)
         {
             agent.enabled = true;
@@ -79,6 +82,8 @@ public class DevilAI : MonoBehaviour
                 DoFootSteps();
             }
         }
+
+        //eger görüs acisinin disinda ise devil dursun
         else
         {
             agent.enabled = false;
