@@ -12,7 +12,7 @@ public class LightTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Devil")
         {
             lightObject.SetActive(true);
             halo.SetActive(true);
@@ -25,7 +25,7 @@ public class LightTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Devil")
         {
             lightObject.SetActive(false);
             halo.SetActive(false);
