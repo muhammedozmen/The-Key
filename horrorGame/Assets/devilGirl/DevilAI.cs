@@ -10,6 +10,10 @@ public class DevilAI : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField] private GameObject target;
+    [SerializeField] private SkinnedMeshRenderer dress;
+    [SerializeField] private SkinnedMeshRenderer eyes;
+    [SerializeField] private SkinnedMeshRenderer plane;
+    [SerializeField] private SkinnedMeshRenderer body;
 
     private float distance;
     [SerializeField] private float runningSpeed;
@@ -34,7 +38,11 @@ public class DevilAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        //rageLevel = 1;
+        rageLevel = 1;
+        dress.enabled = false;
+        eyes.enabled = false;
+        plane.enabled = false;
+        body.enabled = false;
     }
 
     
@@ -48,18 +56,26 @@ public class DevilAI : MonoBehaviour
         if(distance < triggerDistance && rageLevel <= 5)
         {
             agent.enabled = true;
+            dress.enabled = false;
+            eyes.enabled = false;
+            plane.enabled = false;
+            body.enabled = false;
             agent.destination = target.transform.position;
             isRunning = false;
             animator.SetBool("isWalking", true);
             isMoving = true;
             if(agent.remainingDistance < agent.stoppingDistance)
-            {   
+            {
+                dress.enabled = true;
+                eyes.enabled = true;
+                plane.enabled = true;
+                body.enabled = true;
                 isMoving = false;
                 animator.SetBool("isWalking", false);
             }
             if (isMoving)
             {
-                DoFootSteps();
+                //DoFootSteps();
             }
         }
 
@@ -67,6 +83,10 @@ public class DevilAI : MonoBehaviour
         else if(distance < triggerDistance && rageLevel < 11 && rageLevel > 5)
         {
             agent.enabled = true;
+            dress.enabled = false;
+            eyes.enabled = false;
+            plane.enabled = false;
+            body.enabled = false;
             agent.speed = runningSpeed;
             isRunning = true;
             agent.destination = target.transform.position;
@@ -74,12 +94,16 @@ public class DevilAI : MonoBehaviour
             isMoving = true;
             if (agent.remainingDistance < agent.stoppingDistance)
             {
+                dress.enabled = true;
+                eyes.enabled = true;
+                plane.enabled = true;
+                body.enabled = true;
                 isMoving = false;
                 animator.SetBool("isRunning", false);
             }
             if(isMoving)
             {
-                DoFootSteps();
+                //DoFootSteps();
             }
         }
 

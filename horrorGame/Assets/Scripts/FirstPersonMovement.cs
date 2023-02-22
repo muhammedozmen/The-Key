@@ -46,7 +46,7 @@ public class FirstPersonMovement : MonoBehaviour
 
         cam = Camera.main;
 
-        canRun = true;
+        canRun = false;
 
         
     }
