@@ -8,8 +8,8 @@ public class InteractCodeBlock : MonoBehaviour
     public Animator animator;
     public GameObject interactText;
 
-    //public AudioSource AudioSource;
-    //public AudioClip blockTurnSound;
+    public AudioSource AudioSource;
+    public AudioClip blockTurnSound;
 
     public int secretCode;
     [SerializeField] private TextMeshPro code1;
@@ -94,7 +94,7 @@ public class InteractCodeBlock : MonoBehaviour
     private void BlockTurns()
     {
         animator.SetInteger("turnCounter", turnCounter);
-        //AudioSource.PlayOneShot(blockTurnSound);
+        AudioSource.PlayOneShot(blockTurnSound);
     }
     
 }

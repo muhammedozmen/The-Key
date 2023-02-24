@@ -10,6 +10,7 @@ public class OpenLockedChest : MonoBehaviour
     [SerializeField] private GameObject keyMissingText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip openSound;
+    [SerializeField] private GameObject keyGUI;
 
     [SerializeField] private bool inReach;
     [SerializeField] private bool isOpen;
@@ -32,6 +33,7 @@ public class OpenLockedChest : MonoBehaviour
             openText.SetActive(false);
             keyMissingText.SetActive(false);
             isOpen = true;
+            keyGUI.SetActive(false);
         }
         else if(boxKeyNeeded.activeInHierarchy == false && inReach && Input.GetKeyDown(KeyCode.E))
         {

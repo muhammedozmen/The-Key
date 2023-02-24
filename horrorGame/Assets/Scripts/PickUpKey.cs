@@ -8,6 +8,7 @@ public class PickUpKey : MonoBehaviour
     [SerializeField] private GameObject keyOnInventory;
     [SerializeField] private GameObject pickUpText;
     [SerializeField] private AudioSource pickUpSound;
+    [SerializeField] private GameObject keyGUI;
 
     [SerializeField] private bool inReach;
 
@@ -16,6 +17,7 @@ public class PickUpKey : MonoBehaviour
         inReach = false;
         pickUpText.SetActive(false);
         keyOnInventory.SetActive(false);
+        keyGUI.SetActive(false);
     }
 
     
@@ -27,6 +29,7 @@ public class PickUpKey : MonoBehaviour
             pickUpSound.Play();
             keyOnInventory.SetActive(true);
             pickUpText.SetActive(false);
+            keyGUI.SetActive(true);
         }
     }
  
