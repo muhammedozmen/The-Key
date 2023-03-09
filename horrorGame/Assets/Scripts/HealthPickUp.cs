@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class HealthPickUp : MonoBehaviour
@@ -7,45 +8,56 @@ public class HealthPickUp : MonoBehaviour
     [SerializeField] private GameObject pickUpObject;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject pickUpText;
-    [SerializeField] private GameObject cannotPickUpText;
+    [SerializeField] private GameObject cannotUseText;    
     [SerializeField] private float addHealth = 25f;
-    [SerializeField] private float currentHealth;
+    [SerializeField] private PlayerHealth playerHealth;
 
-    [SerializeField] private AudioSource healthPickUpSound;
+    [SerializeField] private AudioSource healthUseSound;
 
     [SerializeField] private GameObject screenFX;
 
     private bool inReach;
 
+    
 
     private void Start()
     {
-        currentHealth = player.GetComponent<PlayerHealth>().health;
-        cannotPickUpText.SetActive(false);
+        cannotUseText.SetActive(false);
         pickUpText.SetActive(false);
-
         screenFX.SetActive(false);
-
         inReach = false;
     }
 
     private void Update()
     {
-        if(inReach && Input.GetKeyDown(KeyCode.E) && player.GetComponent<PlayerHealth>().health < 100)
+        
+
+        if(inReach && Input.GetKeyDown(KeyCode.E))
         {
+            playerHealth.healthAmount++;
             inReach = false;
-            healthPickUpSound.Play();
-            player.GetComponent<PlayerHealth>().health += addHealth;
-            screenFX.SetActive(true);
             pickUpObject.GetComponent<BoxCollider>().enabled = false;
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
-            StartCoroutine(TurnScreenFXOFF());
+            
         }
-        else if(inReach && Input.GetKeyDown(KeyCode.E) && player.GetComponent<PlayerHealth>().health == 100)
+
+
+
+        if(playerHealth.healthAmount > 0 && Input.GetKeyDown(KeyCode.C) && player.GetComponent<PlayerHealth>().health < 100)
         {
-            pickUpText.SetActive(false);
-            cannotPickUpText.SetActive(true);
+            playerHealth.isJustUsed = true;
+            player.GetComponent<PlayerHealth>().health += addHealth;
+            screenFX.SetActive(true);
+            playerHealth.healthAmount--;
+            healthUseSound.Play();
+            StartCoroutine(TurnScreenFXOFF());
+
+        }
+        else if (playerHealth.healthAmount > 0 && Input.GetKeyDown(KeyCode.C) && player.GetComponent<PlayerHealth>().health == 100)
+        {
+            cannotUseText.SetActive(true);
+            StartCoroutine(CloseCannotUseText());
         }
     }
 
@@ -54,6 +66,13 @@ public class HealthPickUp : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
         screenFX.SetActive(false);
         pickUpObject.SetActive(false);
+        playerHealth.isJustUsed = false;
+    }
+
+    IEnumerator CloseCannotUseText()
+    {
+        yield return new WaitForSeconds(3.25f);
+        cannotUseText.SetActive(false);
     }
 
 
@@ -72,7 +91,6 @@ public class HealthPickUp : MonoBehaviour
         {
             inReach = false;
             pickUpText.SetActive(false);
-            cannotPickUpText.SetActive(false);
         }
     }
 }

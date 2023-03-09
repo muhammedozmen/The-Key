@@ -7,7 +7,7 @@ public class StaminaBar : MonoBehaviour
 {
     [SerializeField] private Image staminaBar;
     public float CurrentStamina;
-    [SerializeField] private float MaxStamina = 200f;
+    [SerializeField] private float MaxStamina = 100f;
     private PlayerStamina playerStamina;
 
     void Start()

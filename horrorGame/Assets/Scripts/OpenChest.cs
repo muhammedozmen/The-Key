@@ -36,18 +36,22 @@ public class OpenChest : MonoBehaviour
             {
                 case 1:
                     {
-                        drop1.SetActive(true);
+                        drop1.GetComponent<MeshRenderer>().enabled = true;
+                        drop1.GetComponent<BoxCollider>().enabled = true;
                         break;
                     }
                 case 2:
                     {
-                        drop2.SetActive(true);
+                        drop2.GetComponent<MeshRenderer>().enabled = true;
+                        drop2.GetComponent<BoxCollider>().enabled = true;
                         break;
                     }
                 case 3:
                     {
-                        drop1.SetActive(true);
-                        drop2.SetActive(true);
+                        drop1.GetComponent<MeshRenderer>().enabled = true;
+                        drop1.GetComponent<BoxCollider>().enabled = true;
+                        drop2.GetComponent<MeshRenderer>().enabled = true;
+                        drop2.GetComponent<BoxCollider>().enabled = true;
                         break;
                     }
                 case 4:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StaminaPickUp : MonoBehaviour
@@ -7,46 +8,59 @@ public class StaminaPickUp : MonoBehaviour
     [SerializeField] private GameObject pickUpObject;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject pickUpText;
-    [SerializeField] private GameObject cannotPickUpText;
-    [SerializeField] private float addStamina = 200f;
+    [SerializeField] private GameObject cannotUseText;
+    [SerializeField] private float addStamina = 100f;
+    [SerializeField] private PlayerStamina playerStamina;
+
     
 
-    [SerializeField] private AudioSource staminaPickUpSound;
+
+    [SerializeField] private AudioSource staminaUseSound;
 
     [SerializeField] private GameObject screenFX;
 
     private bool inReach;
 
 
+    
+
     private void Start()
     {
         
-        cannotPickUpText.SetActive(false);
+        cannotUseText.SetActive(false);
         pickUpText.SetActive(false);
-
         screenFX.SetActive(false);
-
         inReach = false;
     }
 
     private void Update()
     {
-        if (inReach && Input.GetKeyDown(KeyCode.E) && player.GetComponent<PlayerStamina>().stamina < 200)
+        if (inReach && Input.GetKeyDown(KeyCode.E))
         {
+            playerStamina.staminaAmount++;
             inReach = false;
-            staminaPickUpSound.Play();
-            player.GetComponent<PlayerStamina>().stamina += addStamina;
-            screenFX.SetActive(true);
             pickUpObject.GetComponent<BoxCollider>().enabled = false;
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
+        }
+
+
+
+        if (playerStamina.staminaAmount > 0 && Input.GetKeyDown(KeyCode.V) && player.GetComponent<PlayerStamina>().stamina < 100)
+        {
+            playerStamina.isJustUsed = true;
+            player.GetComponent<PlayerStamina>().stamina += addStamina;
+            screenFX.SetActive(true);
+            playerStamina.staminaAmount--;
+            staminaUseSound.Play();
             StartCoroutine(TurnScreenFXOFF());
         }
-        else if (inReach && Input.GetKeyDown(KeyCode.E) && player.GetComponent<PlayerStamina>().stamina == 200)
+        else if (playerStamina.staminaAmount > 0 && Input.GetKeyDown(KeyCode.V) && player.GetComponent<PlayerStamina>().stamina == 100)
         {
-            pickUpText.SetActive(false);
-            cannotPickUpText.SetActive(true);
+            cannotUseText.SetActive(true);
+            StartCoroutine(CloseCannotUseText());
         }
+        
     }
 
     IEnumerator TurnScreenFXOFF()
@@ -54,6 +68,13 @@ public class StaminaPickUp : MonoBehaviour
         yield return new WaitForSeconds(1.25f);
         screenFX.SetActive(false);
         pickUpObject.SetActive(false);
+        playerStamina.isJustUsed = false;
+    }
+
+    IEnumerator CloseCannotUseText()
+    {
+        yield return new WaitForSeconds(3.25f);
+        cannotUseText.SetActive(false);
     }
 
 
@@ -72,7 +93,6 @@ public class StaminaPickUp : MonoBehaviour
         {
             inReach = false;
             pickUpText.SetActive(false);
-            cannotPickUpText.SetActive(false);
         }
     }
 }

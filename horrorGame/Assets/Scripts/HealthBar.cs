@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image healthBar;
     public float CurrentHealth;
     [SerializeField] private float MaxHealth = 100f;
-    PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     
     void Start()
     {
