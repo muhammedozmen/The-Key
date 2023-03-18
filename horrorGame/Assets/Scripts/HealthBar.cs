@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] private Image healthBar;
-    public float CurrentHealth;
-    [SerializeField] private float MaxHealth = 100f;
     private PlayerHealth playerHealth;
-    
+    [SerializeField] private Image healthBar;
+    [SerializeField] private float MaxHealth = 100f;
+    public float CurrentHealth;
+
     void Start()
     {
         healthBar = GetComponent<Image>();

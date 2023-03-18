@@ -9,24 +9,18 @@ public class StaminaPickUp : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject pickUpText;
     [SerializeField] private GameObject cannotUseText;
+    [SerializeField] private GameObject screenFX;
+
     [SerializeField] private float addStamina = 100f;
+
     [SerializeField] private PlayerStamina playerStamina;
-
-    
-
 
     [SerializeField] private AudioSource staminaUseSound;
 
-    [SerializeField] private GameObject screenFX;
-
     private bool inReach;
-
-
-    
 
     private void Start()
     {
-        
         cannotUseText.SetActive(false);
         pickUpText.SetActive(false);
         screenFX.SetActive(false);
@@ -34,6 +28,12 @@ public class StaminaPickUp : MonoBehaviour
     }
 
     private void Update()
+    {
+        Interact();
+        StaminaUse();
+    }
+
+    private void Interact()
     {
         if (inReach && Input.GetKeyDown(KeyCode.E))
         {
@@ -43,9 +43,10 @@ public class StaminaPickUp : MonoBehaviour
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
         }
+    }
 
-
-
+    private void StaminaUse()
+    {
         if (playerStamina.staminaAmount > 0 && Input.GetKeyDown(KeyCode.V) && player.GetComponent<PlayerStamina>().stamina < 100)
         {
             playerStamina.isJustUsed = true;
@@ -60,7 +61,6 @@ public class StaminaPickUp : MonoBehaviour
             cannotUseText.SetActive(true);
             StartCoroutine(CloseCannotUseText());
         }
-        
     }
 
     IEnumerator TurnScreenFXOFF()

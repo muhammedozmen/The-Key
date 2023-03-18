@@ -6,12 +6,14 @@ using UnityEngine;
 public class PlayerStamina : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private TextMeshProUGUI staminaAmountText;
-    [SerializeField] private GameObject lackOfAmountText;
-    public float staminaAmount;
-    public bool isJustUsed;
 
+    [SerializeField] private GameObject lackOfAmountText;
+    [SerializeField] private TextMeshProUGUI staminaAmountText;
+    
+    public float staminaAmount;
     public float stamina = 100f;
+
+    public bool isJustUsed;
 
     private void Start()
     {
@@ -23,8 +25,6 @@ public class PlayerStamina : MonoBehaviour
 
     void Update()
     {
-        
-
         if (stamina <= 0)
         {
             player.GetComponent<FirstPersonMovement>().canRun = false;
@@ -49,6 +49,7 @@ public class PlayerStamina : MonoBehaviour
             lackOfAmountText.SetActive(true);
             StartCoroutine(CloseLackOfAmountText());
         }
+
         staminaAmountText.text = staminaAmount.ToString();
     }
 

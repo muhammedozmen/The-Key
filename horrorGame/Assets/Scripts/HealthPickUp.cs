@@ -8,17 +8,16 @@ public class HealthPickUp : MonoBehaviour
     [SerializeField] private GameObject pickUpObject;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject pickUpText;
-    [SerializeField] private GameObject cannotUseText;    
+    [SerializeField] private GameObject cannotUseText;
+    [SerializeField] private GameObject screenFX;
+
     [SerializeField] private float addHealth = 25f;
+
     [SerializeField] private PlayerHealth playerHealth;
 
     [SerializeField] private AudioSource healthUseSound;
 
-    [SerializeField] private GameObject screenFX;
-
     private bool inReach;
-
-    
 
     private void Start()
     {
@@ -30,21 +29,27 @@ public class HealthPickUp : MonoBehaviour
 
     private void Update()
     {
-        
+        Interact();
+        HealthUse();
 
-        if(inReach && Input.GetKeyDown(KeyCode.E))
+    }
+
+    private void Interact()
+    {
+        if (inReach && Input.GetKeyDown(KeyCode.E))
         {
             playerHealth.healthAmount++;
             inReach = false;
             pickUpObject.GetComponent<BoxCollider>().enabled = false;
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
-            
+
         }
+    }
 
-
-
-        if(playerHealth.healthAmount > 0 && Input.GetKeyDown(KeyCode.C) && player.GetComponent<PlayerHealth>().health < 100)
+    private void HealthUse()
+    {
+        if (playerHealth.healthAmount > 0 && Input.GetKeyDown(KeyCode.C) && player.GetComponent<PlayerHealth>().health < 100)
         {
             playerHealth.isJustUsed = true;
             player.GetComponent<PlayerHealth>().health += addHealth;
@@ -52,7 +57,6 @@ public class HealthPickUp : MonoBehaviour
             playerHealth.healthAmount--;
             healthUseSound.Play();
             StartCoroutine(TurnScreenFXOFF());
-
         }
         else if (playerHealth.healthAmount > 0 && Input.GetKeyDown(KeyCode.C) && player.GetComponent<PlayerHealth>().health == 100)
         {

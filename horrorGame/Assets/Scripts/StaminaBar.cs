@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
-    [SerializeField] private Image staminaBar;
-    public float CurrentStamina;
-    [SerializeField] private float MaxStamina = 100f;
     private PlayerStamina playerStamina;
+    [SerializeField] private Image staminaBar;
+    [SerializeField] private float MaxStamina = 100f;
+    public float CurrentStamina;
+    
 
     void Start()
     {

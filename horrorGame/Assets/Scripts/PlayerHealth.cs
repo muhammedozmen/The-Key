@@ -11,16 +11,18 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] private GameObject lackOfAmountText;
     [SerializeField] private TextMeshProUGUI healthAmountText;
+
     public float healthAmount;
+    public float health = 100f;
+
     public bool isJustUsed;
 
-    public float health = 100f;
-    
     void Start()
     {
         healthAmount = 0;
         lackOfAmountText.SetActive(false);
         health = 100f;
+
         // Lock the mouse cursor to the game screen.
         Cursor.lockState = CursorLockMode.Locked;
 
