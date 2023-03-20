@@ -16,6 +16,7 @@ public class StaminaPickUp : MonoBehaviour
     [SerializeField] private PlayerStamina playerStamina;
 
     [SerializeField] private AudioSource staminaUseSound;
+    [SerializeField] private AudioSource potionPickUp;
 
     private bool inReach;
 
@@ -42,6 +43,7 @@ public class StaminaPickUp : MonoBehaviour
             pickUpObject.GetComponent<BoxCollider>().enabled = false;
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
+            potionPickUp.Play();
         }
     }
 

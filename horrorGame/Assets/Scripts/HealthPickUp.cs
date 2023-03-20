@@ -16,6 +16,7 @@ public class HealthPickUp : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
 
     [SerializeField] private AudioSource healthUseSound;
+    [SerializeField] private AudioSource potionPickUp;
 
     private bool inReach;
 
@@ -43,7 +44,7 @@ public class HealthPickUp : MonoBehaviour
             pickUpObject.GetComponent<BoxCollider>().enabled = false;
             pickUpObject.GetComponent<MeshRenderer>().enabled = false;
             pickUpText.SetActive(false);
-
+            potionPickUp.Play();
         }
     }
 

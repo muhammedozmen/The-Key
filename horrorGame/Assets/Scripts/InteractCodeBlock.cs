@@ -21,9 +21,11 @@ public class InteractCodeBlock : MonoBehaviour
     
 
     private bool inReach;
+    private bool isBlockTurning;
 
     void Start()
     {
+        isBlockTurning = false;
         inReach = false;
         turnCounter = 1;
         numberCounter = 1;
@@ -32,7 +34,7 @@ public class InteractCodeBlock : MonoBehaviour
 
     void Update()
     {
-        if (inReach && Input.GetKeyDown(KeyCode.E))
+        if (isBlockTurning == false && inReach && Input.GetKeyDown(KeyCode.E))
         {
             if (numberCounter < 9)
             {
@@ -66,9 +68,18 @@ public class InteractCodeBlock : MonoBehaviour
             {
                 code4.text = numberCounter.ToString();
                 turnCounter = 1;
-
             }
         }
+    }
+
+    private void FirstEvent()
+    {
+        isBlockTurning = !isBlockTurning;
+    }
+
+    private void SecondEvent()
+    {
+        isBlockTurning = !isBlockTurning;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -93,8 +104,8 @@ public class InteractCodeBlock : MonoBehaviour
 
     private void BlockTurns()
     {
-        animator.SetInteger("turnCounter", turnCounter);
-        AudioSource.PlayOneShot(blockTurnSound);
+        animator.SetInteger("turnCounter", turnCounter);      
+        AudioSource.PlayOneShot(blockTurnSound);    
     }
     
 }
