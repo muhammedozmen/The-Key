@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class LightSwitch : MonoBehaviour
 {
@@ -16,15 +17,14 @@ public class LightSwitch : MonoBehaviour
 
     [SerializeField] LightFlicker lightFlicker;
 
-    //[SerializeField] private AudioSource lightOn;
-    //[SerializeField] private AudioSource lightOff;
+    [SerializeField] private AudioClip lightOn;
+    [SerializeField] private AudioSource AudioSource;
 
     private bool isLightOn;
     private bool inReach;
     
     void Start()
     {
-        
         inReach = false;
         isLightOn = false;
     }
@@ -51,7 +51,7 @@ public class LightSwitch : MonoBehaviour
                 halo.SetActive(false);
                 fire.SetActive(false);
                 smoke.SetActive(false);
-                //lightOn.Play();
+                AudioSource.Pause();
                 isLightOn = false;
             }
             else if (isLightOn == false && inReach == true && Input.GetKeyDown(KeyCode.E) && lightFlicker.isDevilTriggered == false)
@@ -60,7 +60,8 @@ public class LightSwitch : MonoBehaviour
                 halo.SetActive(true);
                 fire.SetActive(true);
                 smoke.SetActive(true);
-                //lightOff.Play();    
+                AudioSource.PlayOneShot(lightOn);
+                AudioSource.Play();
                 isLightOn = true;
             }
             else if (inReach == true && Input.GetKeyDown(KeyCode.E) && lightFlicker.isDevilTriggered == true)
