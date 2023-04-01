@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class OpenChest : MonoBehaviour
 {
+    [SerializeField] private DevilAI devilAI;
+
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject openText;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip openSound;
+
+    [SerializeField] private AudioSource PlayerAudioSource;
+    [SerializeField] private List<AudioClip> devilSounds = new List<AudioClip>();
 
     [SerializeField] private bool inReach;
     [SerializeField] private bool isOpen;
@@ -31,7 +36,8 @@ public class OpenChest : MonoBehaviour
             animator.SetBool("open", true);
             openText.SetActive(false);
             isOpen = true;
-
+            devilAI.rageLevel++;
+            PlayerAudioSource.PlayOneShot(devilSounds[Random.Range(0, devilSounds.Count)]);
             switch (randomNumber)
             {
                 case 1:

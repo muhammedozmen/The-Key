@@ -16,6 +16,7 @@ public class DevilAI : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer plane;
     [SerializeField] private SkinnedMeshRenderer body;
 
+    [SerializeField] private float visibleDistance;
     private float distance;
     [SerializeField] private float runningSpeed;
 
@@ -23,7 +24,6 @@ public class DevilAI : MonoBehaviour
     public float triggerDistance;
 
     private AudioSource audioSource;
-    private bool isRunning;
     [SerializeField] private bool isMoving;
     public bool isTargetable;
 
@@ -59,17 +59,19 @@ public class DevilAI : MonoBehaviour
             plane.enabled = false;
             body.enabled = false;
             agent.destination = target.transform.position;
-            isRunning = false;
             animator.SetBool("isWalking", true);
             isMoving = true;
-            if(agent.remainingDistance < agent.stoppingDistance)
+            if(agent.remainingDistance < visibleDistance)
             {
                 dress.enabled = true;
                 eyes.enabled = true;
                 plane.enabled = true;
                 body.enabled = true;
-                isMoving = false;
-                animator.SetBool("isWalking", false);
+                if(agent.remainingDistance < agent.stoppingDistance)
+                {
+                    isMoving = false;
+                    animator.SetBool("isWalking", false);
+                }    
             }
             if (isMoving)
             {
@@ -86,18 +88,20 @@ public class DevilAI : MonoBehaviour
             plane.enabled = false;
             body.enabled = false;
             agent.speed = runningSpeed;
-            isRunning = true;
             agent.destination = target.transform.position;
             animator.SetBool("isRunning", true);
             isMoving = true;
-            if (agent.remainingDistance < agent.stoppingDistance)
+            if (agent.remainingDistance < visibleDistance)
             {
                 dress.enabled = true;
                 eyes.enabled = true;
                 plane.enabled = true;
                 body.enabled = true;
-                isMoving = false;
-                animator.SetBool("isRunning", false);
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    isMoving = false;
+                    animator.SetBool("isRunning", false);
+                }
             }
         }
 

@@ -12,11 +12,14 @@ public class OpenLockedChest : MonoBehaviour
     [SerializeField] private AudioClip openSound;
     [SerializeField] private GameObject keyGUI;
 
+    [SerializeField] private BoxCollider paperCollider;
+
     [SerializeField] private bool inReach;
     [SerializeField] private bool isOpen;
 
     void Start()
     {
+        paperCollider.enabled = false;
         inReach = false;
         openText.SetActive(false);
         keyMissingText.SetActive(false);
@@ -27,6 +30,7 @@ public class OpenLockedChest : MonoBehaviour
     {
         if(boxKeyNeeded.activeInHierarchy == true && inReach && Input.GetKeyDown(KeyCode.E))
         {
+            paperCollider.enabled = false;
             boxKeyNeeded.SetActive(false);
             audioSource.PlayOneShot(openSound);
             animator.SetBool("open", true);

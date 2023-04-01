@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+
     [SerializeField] private GameObject player;
     [SerializeField] private float damageRange;
     [SerializeField] private float minDamage;
     [SerializeField] private float maxDamage;
-    
 
-    [SerializeField] private AudioClip[] sounds;
-    [SerializeField] private AudioSource source;
+    [SerializeField] private bool isAttacking;
 
-    private FirstPersonMovement firstPersonMovement;
+    [SerializeField] private AudioSource PlayerAudioSource;
+    [SerializeField] private AudioClip[] PlayerHurtSounds;
     
+    [SerializeField] private AudioSource AttackAudioSource;
+    [SerializeField] private AudioClip[] DevilAttackSounds;
+
+  
     void Start()
     {
+        isAttacking = false;
         damageRange = Random.Range(minDamage, maxDamage);
-        source = player.GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (isAttacking)
+        {
+            animator.SetBool("isAttacking", true);
+        }
+        else if (isAttacking == false)
+        {
+            animator.SetBool("isAttacking", false);
+        }
     }
 
 
@@ -26,9 +43,28 @@ public class EnemyDamage : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            player.GetComponent<PlayerHealth>().health -= damageRange;
-            source.clip = sounds[Random.Range(0, sounds.Length)];
-            source.Play();
+            isAttacking = true; 
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            isAttacking = false;
+        }
+    }
+
+    public void DamageDealt()
+    {
+        player.GetComponent<PlayerHealth>().health -= damageRange;
+        PlayerAudioSource.clip = PlayerHurtSounds[Random.Range(0, PlayerHurtSounds.Length)];
+        PlayerAudioSource.Play();
+    }
+
+    public void AnimationEnter()
+    {
+        AttackAudioSource.clip = DevilAttackSounds[Random.Range(0, DevilAttackSounds.Length)];
+        AttackAudioSource.Play();
     }
 }
