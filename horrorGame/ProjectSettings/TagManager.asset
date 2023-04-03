@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Reach
   - Devil
+  - TargetPosition1
+  - TargetPosition2
+  - JumpScare
   layers:
   - Default
   - TransparentFX
