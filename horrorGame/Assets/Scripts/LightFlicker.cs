@@ -5,6 +5,8 @@ using UnityEngine;
 public class LightFlicker : MonoBehaviour
 {
     public Light lightObject;
+    public Light lightObject2;
+
     [SerializeField] private GameObject halo;
     [SerializeField] private GameObject fire;
     [SerializeField] private GameObject smoke;
@@ -42,6 +44,7 @@ public class LightFlicker : MonoBehaviour
         if(timer <= 0)
         {
             lightObject.enabled = !lightObject.enabled;
+            lightObject2.enabled = !lightObject2.enabled;
             halo.SetActive(!halo.activeInHierarchy);
             fire.SetActive(!fire.activeInHierarchy);
             smoke.SetActive(!smoke.activeInHierarchy);

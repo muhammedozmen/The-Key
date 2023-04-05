@@ -26,29 +26,16 @@ public class FirstPersonMovement : MonoBehaviour
     [SerializeField] private float walkFootStepTimer;
     [SerializeField] private float runFootStepTimer;
 
-
     private bool isRunning;
-
-    [SerializeField] private Volume volume;
-    private ChromaticAberration chromaticAberration;
 
     private Camera cam;
 
-
     void Awake()
     {
-        // Get the rigidbody on this.
         rb = GetComponent<Rigidbody>();
-
         audioSource = GetComponent<AudioSource>();
-
-        volume.profile.TryGet(out chromaticAberration);
-
         cam = Camera.main;
-
         canRun = false;
-
-        
     }
 
     private void Start()
@@ -81,7 +68,6 @@ public class FirstPersonMovement : MonoBehaviour
             if (targetVelocity != Vector2.zero)
             {
                 DoFootSteps();
-                DOTween.To(() => chromaticAberration.intensity.value, x => chromaticAberration.intensity.value = x, 1, 3);
                 cam.DOFieldOfView(70, 1);
             }
         }
@@ -91,7 +77,6 @@ public class FirstPersonMovement : MonoBehaviour
             if (targetVelocity != Vector2.zero)
             {
                 DoFootSteps();
-                DOTween.To(() => chromaticAberration.intensity.value, x => chromaticAberration.intensity.value = x, 0, 3);
                 cam.DOFieldOfView(60, 1);
             }
         }
