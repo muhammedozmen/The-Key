@@ -7,6 +7,8 @@ using DG.Tweening;
 public class FirstPersonMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private float fov;
+    [SerializeField] private float runningFov;
 
     [Header("Running")]
     public bool canRun;
@@ -68,7 +70,7 @@ public class FirstPersonMovement : MonoBehaviour
             if (targetVelocity != Vector2.zero)
             {
                 DoFootSteps();
-                cam.DOFieldOfView(70, 1);
+                cam.DOFieldOfView(runningFov, 1);
             }
         }
         else if (IsRunning == false)
@@ -77,7 +79,7 @@ public class FirstPersonMovement : MonoBehaviour
             if (targetVelocity != Vector2.zero)
             {
                 DoFootSteps();
-                cam.DOFieldOfView(60, 1);
+                cam.DOFieldOfView(fov, 1);
             }
         }
     }
