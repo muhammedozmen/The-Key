@@ -37,6 +37,8 @@ public class LoadPrefs : MonoBehaviour
     [Header("Insert Y Setting")]
     [SerializeField] private Toggle invertYToggle = null;
 
+    [SerializeField] private GameObject UISounds;
+
     private void Awake()
     {
         if (canUse)
