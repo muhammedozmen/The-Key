@@ -52,12 +52,6 @@ public class MenuController : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
-    [Header("Sound Effects")]
-    [SerializeField] private AudioSource AudioSource;
-    [SerializeField] private AudioClip clickSound;
-    [SerializeField] private AudioClip checkBoxSound;
-
-
     private void Start()
     {
         resolutions = Screen.resolutions;
