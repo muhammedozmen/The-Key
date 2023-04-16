@@ -37,6 +37,7 @@ public class PlayerStamina : MonoBehaviour
         if(stamina <= 0)
         {
             player.GetComponent<FirstPersonMovement>().canRun = false;
+            StartCoroutine(CanRefullStamina());
         }
 
         if(stamina > 0 && stamina <= 50)
@@ -58,11 +59,11 @@ public class PlayerStamina : MonoBehaviour
                 } 
                 StartCoroutine(CanRefullStamina());
             }
+        }
 
-            if (canRefull == true)
-            {
-                stamina += Time.deltaTime * 1.5f;
-            }
+        if (canRefull == true)
+        {
+            stamina += Time.deltaTime * 1.5f;
         }
 
         if (stamina > 50)
@@ -87,17 +88,16 @@ public class PlayerStamina : MonoBehaviour
 
     IEnumerator CanRefullStamina()
     {
+        if (isRunning == false)
+        {
+            exhaustAmount = 0;
+        }
         yield return new WaitForSeconds(4f);
         canRefull = true;
 
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
-        }
-
-        if (isRunning == false)
-        {
-            exhaustAmount = 0;
         }
     }
     

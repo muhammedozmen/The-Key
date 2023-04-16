@@ -32,10 +32,16 @@ public class ASyncLoader : MonoBehaviour
     }
 
     IEnumerator LoadLevelWaiting(string levelToLoad)
-    {
-        yield return new WaitForSeconds(2);
+    {    
+        yield return new WaitForSeconds(2f);
         mainMenu.SetActive(false);
         loadingScreen.SetActive(true);
+        StartCoroutine(Waiting(levelToLoad));
+    }
+
+    IEnumerator Waiting(string levelToLoad)
+    {
+        yield return new WaitForSeconds(1f);
         StartCoroutine(LoadLevelASync(levelToLoad));
     }
 }

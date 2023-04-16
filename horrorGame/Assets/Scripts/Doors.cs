@@ -21,7 +21,7 @@ public class Doors : MonoBehaviour
     [SerializeField] private InteractCodeBlock CodeBlock3;
     [SerializeField] private InteractCodeBlock CodeBlock4;
 
-    private bool isOpened;
+    public bool isOpened;
 
     
     void Awake()

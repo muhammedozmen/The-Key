@@ -15,7 +15,7 @@ public class OpenLockedChest : MonoBehaviour
     [SerializeField] private BoxCollider paperCollider;
 
     [SerializeField] private bool inReach;
-    [SerializeField] private bool isOpen;
+    public bool isOpen;
 
     void Start()
     {
