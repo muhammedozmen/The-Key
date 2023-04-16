@@ -20,7 +20,6 @@ public class LightFlicker : MonoBehaviour
     void Start()
     {
         timer = Random.Range(minTime, maxTime);
-        
     }
 
     
@@ -29,9 +28,7 @@ public class LightFlicker : MonoBehaviour
         if (isDevilTriggered)
         {        
             LightFlickering();
-        }
-            
-            
+        }  
     }
 
     private void LightFlickering()

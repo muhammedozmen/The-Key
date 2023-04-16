@@ -6,9 +6,10 @@ public class LanternController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     private bool isDrawed;
-    [SerializeField] private GameObject pointLight;
+    [SerializeField] private Light pointLight;
     [SerializeField] private GameObject candle;
     [SerializeField] private GameObject halo;
+    [SerializeField] private GameObject smoke;
 
     void Start()
     {
@@ -23,17 +24,19 @@ public class LanternController : MonoBehaviour
         {
             isDrawed=true;
             animator.SetBool("isDrawed", true);
-            pointLight.SetActive(true);
+            pointLight.enabled = true;
             candle.SetActive(true);
             halo.SetActive(true);
+            smoke.SetActive(true);
         }
         else if (Input.GetKeyDown(KeyCode.F) && isDrawed == true)
         {
             isDrawed = false;
             animator.SetBool("isDrawed", false);
-            pointLight.SetActive(false);
+            pointLight.enabled = false;
             candle.SetActive(false);
             halo.SetActive(false);
+            smoke.SetActive(false);
         }
         
     }
