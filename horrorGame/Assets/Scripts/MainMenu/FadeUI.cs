@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class FadeUI : MonoBehaviour
 {
-    private int fadeInAmount = 0;
-    private int fadeOutAmount = 1;
+    [SerializeField] private int fadeInAmount = 0;
+    [SerializeField] private int fadeOutAmount = 1;
     [SerializeField] private float fadeInDuration = 2;
     [SerializeField] private float fadeOutDuration = 2;
     [SerializeField] private CanvasGroup myFadingGroup;
@@ -20,7 +20,7 @@ public class FadeUI : MonoBehaviour
 
     IEnumerator FadeWaiting()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(fadeOutDuration);
         myFadingGroup.DOFade(fadeInAmount, fadeInDuration);
     }
 }

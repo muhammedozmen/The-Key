@@ -19,6 +19,10 @@ public class LightTrigger : MonoBehaviour
         if (other.gameObject.tag == "Devil")
         {
             lightFlicker.isDevilTriggered = false;
+            lightFlicker.lightObject.enabled = true;
+            lightFlicker.halo.SetActive(true);
+            lightFlicker.fire.SetActive(true);
+            lightFlicker.smoke.SetActive(true);
         }
     }
 }

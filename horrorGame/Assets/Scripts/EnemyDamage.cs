@@ -11,7 +11,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] private float minDamage;
     [SerializeField] private float maxDamage;
 
-    [SerializeField] private bool isAttacking;
+    public bool isAttacking;
 
     [SerializeField] private AudioSource PlayerAudioSource;
     [SerializeField] private AudioClip[] PlayerHurtSounds;

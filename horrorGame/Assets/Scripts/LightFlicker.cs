@@ -6,9 +6,9 @@ public class LightFlicker : MonoBehaviour
 {
     public Light lightObject;
 
-    [SerializeField] private GameObject halo;
-    [SerializeField] private GameObject fire;
-    [SerializeField] private GameObject smoke;
+    public GameObject halo;
+    public GameObject fire;
+    public GameObject smoke;
 
     public bool isDevilTriggered;
     

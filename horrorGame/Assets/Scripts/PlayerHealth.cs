@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private GameObject HUD;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject devil;
+    [SerializeField] private FadeUI fadeUI;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject lackOfAmountText;
@@ -35,10 +39,13 @@ public class PlayerHealth : MonoBehaviour
         if(health <= 0)
         {
             player.GetComponent<FirstPersonMovement>().enabled = false;
+            devil.GetComponent<EnemyDamage>().isAttacking = false;
             cam.GetComponent<FirstPersonLook>().enabled = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            deathScreen.SetActive(true);
+            fadeUI.Fader();
+            HUD.SetActive(false);
+            StartCoroutine(DeathScreenComes());
         }
 
         if(health > 100)
@@ -59,5 +66,12 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(3.25f);
         lackOfAmountText.SetActive(false);
+    }
+
+    IEnumerator DeathScreenComes()
+    {
+        yield return new WaitForSeconds(2);
+        deathScreen.SetActive(true);
+        Destroy(this);
     }
 }
