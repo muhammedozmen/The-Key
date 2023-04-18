@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class LoadPrefs : MonoBehaviour
@@ -17,6 +19,7 @@ public class LoadPrefs : MonoBehaviour
 
 
     [Header("Brightness Setting")]
+    [SerializeField] private Volume volume;
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private TMP_Text brightnessTextValue = null;
 
@@ -30,12 +33,10 @@ public class LoadPrefs : MonoBehaviour
 
 
     [Header("Sensitivity Setting")]
+    [SerializeField] private FirstPersonLook firstPersonLook;
     [SerializeField] private TMP_Text sensitivityTextValue = null;
     [SerializeField] private Slider sensitivitySlider = null;
 
-
-    [Header("Insert Y Setting")]
-    [SerializeField] private Toggle invertYToggle = null;
 
     [SerializeField] private GameObject UISounds;
 
@@ -86,29 +87,18 @@ public class LoadPrefs : MonoBehaviour
 
                 brightnessTextValue.text = localBrightness.ToString("0.0");
                 brightnessSlider.value = localBrightness;
-
-                //change the brightness with postprocessing or whatever it is
+                volume.profile.TryGet<ColorAdjustments>(out ColorAdjustments colorAdjustments);
+                colorAdjustments.contrast.value = 10 / localBrightness;
             }
 
             if (PlayerPrefs.HasKey("masterSens"))
             {
                 float localSensitivity = PlayerPrefs.GetFloat("masterSens");
 
-                sensitivityTextValue.text = localSensitivity.ToString("0");
+                sensitivityTextValue.text = localSensitivity.ToString("0.0");
                 sensitivitySlider.value = localSensitivity;
-                menuController.mainSensitivity = Mathf.RoundToInt(localSensitivity);
-            }
-
-            if (PlayerPrefs.HasKey("masterInvertY"))
-            {
-                if(PlayerPrefs.GetInt("masterInvertY") == 1)
-                {
-                    invertYToggle.isOn = true;
-                }
-                else
-                {
-                    invertYToggle.isOn = false;
-                }
+                menuController.mainSensitivity = localSensitivity;
+                firstPersonLook.sensitivity = localSensitivity;
             }
         }
     }

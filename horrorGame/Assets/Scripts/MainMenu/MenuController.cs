@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Device;
 using Screen = UnityEngine.Device.Screen;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class MenuController : MonoBehaviour
 {
@@ -22,18 +24,16 @@ public class MenuController : MonoBehaviour
     [Header("Gameplay Settings")]
     [SerializeField] private TMP_Text sensitivityTextValue = null;
     [SerializeField] private Slider sensitivitySlider = null;
-    [SerializeField] private int defaultSen = 4;
-    public int mainSensitivity;
-
-
-    [Header("Toggle Settings")]
-    [SerializeField] private Toggle invertYToggle = null;
+    [SerializeField] private float defaultSen = 1.0f;
+    [SerializeField] private FirstPersonLook firstPersonLook;
+    public float mainSensitivity;
 
 
     [Header("Graphics Settings")]
+    [SerializeField] private Volume volume;
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private TMP_Text brightnessTextValue = null;
-    [SerializeField] private float defaultBrightness = 1;
+    [SerializeField] private float defaultBrightness = 1.0f;
 
     [Space(10)]
     [SerializeField] private TMP_Dropdown qualityDropdown;
@@ -113,21 +113,13 @@ public class MenuController : MonoBehaviour
 
     public void SetControllerSens(float sens)
     {
-        mainSensitivity = Mathf.RoundToInt(sens);
-        sensitivityTextValue.text = sens.ToString("0");
+        mainSensitivity = sens;
+        sensitivityTextValue.text = sens.ToString("0.0");
+        firstPersonLook.sensitivity = sens;
     }
 
     public void GameplayApply()
     {
-        if (invertYToggle.isOn)
-        {
-            PlayerPrefs.SetInt("masterInvertY", 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("masterInvertY", 0);
-        }
-
         PlayerPrefs.SetFloat("masterSens", mainSensitivity);
         StartCoroutine(ConfirmationBox());
     }
@@ -135,6 +127,8 @@ public class MenuController : MonoBehaviour
     public void SetBrightness(float brightness)
     {
         brightnessLevel = brightness;
+        volume.profile.TryGet<ColorAdjustments>(out ColorAdjustments colorAdjustments);
+        colorAdjustments.contrast.value = 10 / brightness;
         brightnessTextValue.text = brightness.ToString("0.0");
     }
 
@@ -151,7 +145,8 @@ public class MenuController : MonoBehaviour
     public void GraphicsApply()
     {
         PlayerPrefs.SetFloat("masterBrightness", brightnessLevel);
-        //change your brightness with postprocessing or whatever it is
+        volume.profile.TryGet<ColorAdjustments>(out ColorAdjustments colorAdjustments);
+        colorAdjustments.contrast.value = 10 / brightnessLevel;
 
         PlayerPrefs.SetInt("masterQuality", qualityLevel);
         QualitySettings.SetQualityLevel(qualityLevel);
@@ -174,16 +169,17 @@ public class MenuController : MonoBehaviour
 
         if(MenuType == "Gameplay")
         {
-            sensitivityTextValue.text = defaultSen.ToString("0");
+            sensitivityTextValue.text = defaultSen.ToString("0.0");
             sensitivitySlider.value = defaultSen;
             mainSensitivity = defaultSen;
-            invertYToggle.isOn = false;
+            firstPersonLook.sensitivity = defaultSen;
             GameplayApply();
         }
 
         if (MenuType == "Graphics")
         {
-            //Reset brightness value
+            volume.profile.TryGet<ColorAdjustments>(out ColorAdjustments colorAdjustments);
+            colorAdjustments.contrast.value = 5 * defaultBrightness;
             brightnessSlider.value = defaultBrightness;
             brightnessTextValue.text = defaultBrightness.ToString("0.0");
 
