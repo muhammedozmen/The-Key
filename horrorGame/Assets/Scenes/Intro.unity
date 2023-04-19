@@ -462,8 +462,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: But that was a long time ago.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c7d8c55f1a37e8749908038edde72f33, type: 2}
+  m_sharedMaterial: {fileID: 3825289994472828373, guid: c7d8c55f1a37e8749908038edde72f33,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -487,13 +488,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -703,8 +704,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Now it's a place of darkness,
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c7d8c55f1a37e8749908038edde72f33, type: 2}
+  m_sharedMaterial: {fileID: 3825289994472828373, guid: c7d8c55f1a37e8749908038edde72f33,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -728,13 +730,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -932,7 +934,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1002513089}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: e6b554431ac290648923c04dc321ebef, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -958,6 +960,40 @@ PlayableDirector:
     value: {fileID: 662860288}
   - key: {fileID: 5349164754798344195, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
     value: {fileID: 413555623}
+  - key: {fileID: 4922897825042592415, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2791004539836095127, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2425140152869451535, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7137090739520162663, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4420957931223348144, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4927613267217853182, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6316603071106543427, guid: 7f3a015d5f41ad141b6eb25400286fef, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3039830288151705080, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 1944133996}
+  - key: {fileID: 4816522050699418319, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 518387863}
+  - key: {fileID: 358052651778035828, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 532167471}
+  - key: {fileID: 1560044568512854693, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 1163869055}
+  - key: {fileID: 140136437019474938, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 1116648155}
+  - key: {fileID: 5055665746855065158, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 531963503}
+  - key: {fileID: 5349164754798344195, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 413555623}
+  - key: {fileID: -2008281009793254693, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 139237937}
+  - key: {fileID: -4927613267217853182, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 1509054162}
+  - key: {fileID: -6316603071106543427, guid: e6b554431ac290648923c04dc321ebef, type: 2}
+    value: {fileID: 662860288}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1002513091
@@ -1280,8 +1316,9 @@ MonoBehaviour:
   m_text: There are unidentified paranormal happenings inside and no one has escaped
     so far.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c7d8c55f1a37e8749908038edde72f33, type: 2}
+  m_sharedMaterial: {fileID: 3825289994472828373, guid: c7d8c55f1a37e8749908038edde72f33,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1305,13 +1342,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -1436,8 +1473,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: a place of infinity.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c7d8c55f1a37e8749908038edde72f33, type: 2}
+  m_sharedMaterial: {fileID: 3825289994472828373, guid: c7d8c55f1a37e8749908038edde72f33,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1461,13 +1499,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -1768,8 +1806,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: The temple was once a place of worship, a sanctuary for the faithful.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c7d8c55f1a37e8749908038edde72f33, type: 2}
+  m_sharedMaterial: {fileID: 3825289994472828373, guid: c7d8c55f1a37e8749908038edde72f33,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1793,13 +1832,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
