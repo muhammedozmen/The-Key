@@ -59,12 +59,18 @@ public class EnemyDamage : MonoBehaviour
     {
         player.GetComponent<PlayerHealth>().health -= damageRange;
         PlayerAudioSource.clip = PlayerHurtSounds[Random.Range(0, PlayerHurtSounds.Length)];
-        PlayerAudioSource.Play();
+        if(player.GetComponent<PlayerHealth>().health > 0)
+        {
+            PlayerAudioSource.Play();
+        }   
     }
 
     public void AnimationEnter()
     {
         AttackAudioSource.clip = DevilAttackSounds[Random.Range(0, DevilAttackSounds.Length)];
-        AttackAudioSource.Play();
+        if (player.GetComponent<PlayerHealth>().health > 0)
+        {
+            AttackAudioSource.Play();
+        }
     }
 }

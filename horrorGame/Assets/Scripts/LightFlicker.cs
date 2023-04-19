@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightFlicker : MonoBehaviour
 {
     public Light lightObject;
+    public Light lightObject2;
 
     public GameObject halo;
     public GameObject fire;
@@ -40,11 +41,11 @@ public class LightFlicker : MonoBehaviour
         if(timer <= 0)
         {
             lightObject.enabled = !lightObject.enabled;
+            lightObject2.enabled = !lightObject2.enabled;
             halo.SetActive(!halo.activeInHierarchy);
             fire.SetActive(!fire.activeInHierarchy);
             smoke.SetActive(!smoke.activeInHierarchy);
             timer = Random.Range(minTime, maxTime);
-            //lightSound.Play();
         }
     }
 

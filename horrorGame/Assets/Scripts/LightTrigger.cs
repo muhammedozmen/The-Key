@@ -20,6 +20,7 @@ public class LightTrigger : MonoBehaviour
         {
             lightFlicker.isDevilTriggered = false;
             lightFlicker.lightObject.enabled = true;
+            lightFlicker.lightObject2.enabled = true;
             lightFlicker.halo.SetActive(true);
             lightFlicker.fire.SetActive(true);
             lightFlicker.smoke.SetActive(true);

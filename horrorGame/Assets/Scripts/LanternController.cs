@@ -7,6 +7,7 @@ public class LanternController : MonoBehaviour
     [SerializeField] private Animator animator;
     private bool isDrawed;
     [SerializeField] private Light pointLight;
+    [SerializeField] private Light spotLight;
     [SerializeField] private GameObject candle;
     [SerializeField] private GameObject halo;
     [SerializeField] private GameObject smoke;
@@ -25,6 +26,7 @@ public class LanternController : MonoBehaviour
             isDrawed=true;
             animator.SetBool("isDrawed", true);
             pointLight.enabled = true;
+            spotLight.enabled = true;
             candle.SetActive(true);
             halo.SetActive(true);
             smoke.SetActive(true);
@@ -34,6 +36,7 @@ public class LanternController : MonoBehaviour
             isDrawed = false;
             animator.SetBool("isDrawed", false);
             pointLight.enabled = false;
+            spotLight.enabled = false;
             candle.SetActive(false);
             halo.SetActive(false);
             smoke.SetActive(false);
