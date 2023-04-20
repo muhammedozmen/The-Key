@@ -30,7 +30,6 @@ public class OpenLockedChest : MonoBehaviour
     {
         if(boxKeyNeeded.activeInHierarchy == true && inReach && Input.GetKeyDown(KeyCode.E))
         {
-            paperCollider.enabled = false;
             boxKeyNeeded.SetActive(false);
             audioSource.PlayOneShot(openSound);
             animator.SetBool("open", true);
@@ -49,6 +48,7 @@ public class OpenLockedChest : MonoBehaviour
         {
             animator.GetComponent<BoxCollider>().enabled = false;
             animator.GetComponent<OpenLockedChest>().enabled = false;
+            paperCollider.enabled = true;
         }
     }
 
