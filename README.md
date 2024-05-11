@@ -1,3 +1,3 @@
 # The horror game created with Unity
-## Download the full game link
+## Link to download full game
 https://alant1.itch.io/thekey
